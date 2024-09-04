@@ -2,13 +2,13 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: buildpacks-leidos
+  name: leidos
   labels:
     app.kubernetes.io/version: "777"
   annotations:
     tekton.dev/pipelines.minVersion: "777"
-    tekton.dev/tags: Buildpacks-leidos
-    tekton.dev/displayName: "Buildpacks-leidos"
+    tekton.dev/tags: leidos
+    tekton.dev/displayName: "leidos"
     tekton.dev/platforms: "linux/amd64"
 spec:
   description: >-
