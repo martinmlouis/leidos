@@ -4,10 +4,10 @@ kind: Pipeline
 metadata:
   name: buildpacks-leidos
   labels:
-    app.kubernetes.io/version: "0.1"
+    app.kubernetes.io/version: "777"
   annotations:
-    tekton.dev/pipelines.minVersion: "0.17.0"
-    tekton.dev/tags: image-build
+    tekton.dev/pipelines.minVersion: "777"
+    tekton.dev/tags: Buildpacks-leidos
     tekton.dev/displayName: "Buildpacks-leidos"
     tekton.dev/platforms: "linux/amd64"
 spec:
