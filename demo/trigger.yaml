@@ -8,11 +8,11 @@ spec:
         name: "cel"
       params:
         - name: "filter"
-          value: "header.match('X-GitHub-Event', 'pull_request')"
+          value: "header.match('X-GitHub-Event', 'push')"
         - name: "overlays"
           value:
             - key: extensions.truncated_sha
-              expression: "body.pull_request.head.sha.truncate(7)"
+              expression: "body.head_commit.id"
     - ref:
         name: "github"
       params:
