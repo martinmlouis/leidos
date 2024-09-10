@@ -5,4 +5,8 @@ metadata:
 spec:
   params:
     - name: changedfiles
-      value: $(extensions.changed_files)
+      value: "$(body.head_commit.added)"
+    - name: repo-url
+      value: "$(body.repository.url)"
+    - name: extensions.truncated_sha
+      value: "$(body.head_commit.id)"

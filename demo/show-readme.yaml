@@ -11,4 +11,7 @@ spec:
     image: alpine:latest
     script: | 
       #!/usr/bin/env sh
-      cat $(workspaces.source.path)/README.md
+      pwd
+      ls -l 
+      ls -ltr $(workspaces.source.path)
+      #cat $(workspaces.source.path)/README.md

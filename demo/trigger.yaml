@@ -13,14 +13,10 @@ spec:
           value:
             - key: extensions.truncated_sha
               expression: "body.head_commit.id"
-    - ref:
-        name: "github"
-      params:
-        - name: "eventTypes"
-          value: ["pull_request", "push"]
-        - name: "addChangedFiles"
-          value:
-            enabled: true            
+            - key: extensions.repo-url
+              expression: "body.repository.url"
+            - key: extensions.changedfiles
+              expression: "body.head_commit.added"
   bindings:
   - ref: github-triggerbinding
   template:
