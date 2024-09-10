@@ -1,0 +1,8 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerBinding
+metadata:
+  name: github-triggerbinding
+spec:
+  params:
+    - name: changedfiles
+      value: $(extensions.changed_files)

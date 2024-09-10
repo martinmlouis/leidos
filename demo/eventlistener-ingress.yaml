@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tekton-eventlistener-ingress
+  namespace: default
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: tektoneventlistner.35.212.92.161.nip.io
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: el-github-eventlistener
+            port:
+              number: 8080
+
