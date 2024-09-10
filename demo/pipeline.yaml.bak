@@ -35,17 +35,3 @@ spec:
     workspaces:
     - name: source
       workspace: shared-data
-  - name: show-readme-github
-    runAfter: ["fetch-source"]
-    taskRef:
-      resolver: git
-      params:
-        - name: url
-          value: https://github.com/martinmlouis/leidos.git
-        - name: pathInRepo
-          value: demo/show-readme.yaml
-    workspaces:
-    - name: basic-auth
-      workspace: git-credentials
-    - name: source
-      workspace: shared-data
