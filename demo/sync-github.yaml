@@ -97,7 +97,7 @@ spec:
 
                     set -eu
 
-                    git config --global init.defaultBranch main
+                    #git config --global init.defaultBranch main
 
                     git config --global --add safe.directory "${WORKSPACE_PATH}"
 
