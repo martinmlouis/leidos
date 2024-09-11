@@ -49,14 +49,3 @@ spec:
       workspace: git-credentials
     - name: source
       workspace: shared-data
-  - name: import-resources
-    runAfter: ["fetch-source"]
-    taskRef:
-      name: import-resources
-    workspaces:
-    - name: shared-data
-      workspace: shared-data
-    params:
-    - name: path 
-      value: "demo"
-         

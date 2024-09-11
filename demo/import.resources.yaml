@@ -1,0 +1,26 @@
+apiVersion: tekton.dev/v1 # or tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: import-resources
+spec:
+  params:
+    - name: path
+      type: string
+      description: location to push the built image to
+  workspaces:
+    - name: shared-data
+  steps:
+  steps:
+    - args:
+        - apply 
+        - '-f'
+        - $(params.path)/
+        - '-n'
+        - default
+      command:
+        - kubectl
+      image: lachlanevenson/k8s-kubectl:latest
+      name: import
+      workspaces:
+        - name: shared-data
+
