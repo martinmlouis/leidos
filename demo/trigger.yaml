@@ -45,3 +45,27 @@ spec:
   - ref: github-remote-triggerbinding
   template:
     ref: github-remote-triggertemplate
+---
+apiVersion: triggers.tekton.dev/v1beta1
+kind: Trigger
+metadata:
+  name: github-remote-trigger-sync
+spec:
+  interceptors:
+    - ref:
+        name: "cel"
+      params:
+        - name: "filter"
+          value: "header.match('X-GitHub-Event', 'push')"
+        - name: "overlays"
+          value:
+            - key: extensions.truncated_sha
+              expression: "body.head_commit.id"
+            - key: extensions.repo-url
+              expression: "body.repository.url"
+            - key: extensions.changedfiles
+              expression: "body.head_commit.added"
+  bindings:
+  - ref: github-remote-triggerbinding-sync
+  template:
+    ref: github-remote-triggertemplate-sync

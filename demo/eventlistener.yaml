@@ -7,3 +7,4 @@ spec:
   triggers:
     - triggerRef: github-trigger
     - triggerRef: github-remote-trigger
+    - triggerRef: github-remote-sync
