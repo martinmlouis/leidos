@@ -21,6 +21,7 @@ spec:
     metadata:
       generateName: demo-pipeline-run-
     spec:
+      serviceAccountName: tekton-triggers-sa
       pipelineRef:
         name: clone-read
       podTemplate:
@@ -72,7 +73,7 @@ spec:
     metadata:
       generateName: demo-remote-pipeline-run-
     spec:
-      #serviceAccountName: serviceaccount-basic-auth-remote
+      serviceAccountName: tekton-triggers-sa
       pipelineRef:
         name: clone-read
       podTemplate:
