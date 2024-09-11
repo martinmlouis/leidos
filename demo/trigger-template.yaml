@@ -72,8 +72,7 @@ spec:
     metadata:
       generateName: demo-remote-pipeline-run-
     spec:
-      taskRunTemplate:
-        serviceAccountName: remote-git-serviceaccount
+      serviceAccountName: serviceaccount-basic-auth-remote
       pipelineRef:
         resolver: git
         params:
