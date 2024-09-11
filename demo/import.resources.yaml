@@ -15,9 +15,7 @@ spec:
       script: |
         #!/usr/bin/env sh
         pwd
-        du .
-      workspaces:
-        - name: shared-data
+        ls -ltr $(workspaces.shared-data.path)
     - name: import
       args:
         - apply 
@@ -28,6 +26,4 @@ spec:
       command:
         - kubectl
       image: lachlanevenson/k8s-kubectl:latest
-      workspaces:
-        - name: shared-data
 
