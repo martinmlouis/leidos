@@ -109,7 +109,6 @@ spec:
                     - $(params.target-namespace)
                   command:
                     - kubectl
-                  computeResources: {}
                   image: lachlanevenson/k8s-kubectl:latest
                   name: import
                   securityContext:
