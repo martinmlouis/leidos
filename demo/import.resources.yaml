@@ -16,6 +16,12 @@ spec:
         #!/usr/bin/env sh
         pwd
         ls -ltr $(workspaces.shared-data.path)
+    - name: import-configs
+      script: |
+        #!/usr/bin/env sh
+        pwd
+        ls -ltr $(workspaces.shared-data.path)
+      image: lachlanevenson/k8s-kubectl:latest
     - name: import
       args:
         - apply 
