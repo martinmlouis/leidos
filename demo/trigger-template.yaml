@@ -72,14 +72,9 @@ spec:
     metadata:
       generateName: demo-remote-pipeline-run-
     spec:
-      serviceAccountName: serviceaccount-basic-auth-remote
+      #serviceAccountName: serviceaccount-basic-auth-remote
       pipelineRef:
-        resolver: git
-        params:
-        - name: url
-          value: https://github.com/martinmlouis/leido.git
-        - name: pathInRepo
-          value: demo/pipeline.yaml
+        name: clone-read
       podTemplate:
         securityContext:
           fsGroup: 65532          
