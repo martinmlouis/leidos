@@ -20,7 +20,7 @@ spec:
       args:
         - apply 
         - '-f'
-        - $(params.path)/
+        - $(workspaces.shared-data.path/demo/
         - '-n'
         - default
       command:
