@@ -17,7 +17,7 @@ spec:
   - name: repo-url
     description: The git repository url
   resourcetemplates:
-  - apiVersion: tekton.dev/v1beta1
+  - apiVersion: tekton.dev/v1
     kind: PipelineRun
     metadata:
       annotations:
@@ -130,18 +130,13 @@ spec:
             seccompProfile:
               type: RuntimeDefault
         serviceAccountName: tekton-triggers-sa
-      timeouts:
-        pipeline: 1h0m0s
       workspaces:
         - name: repo
           volumeClaimTemplate:
-            metadata:
-              creationTimestamp: null
             spec:
               accessModes:
                 - ReadWriteOnce
               resources:
                 requests:
                   storage: 1Gi
-            status: {}
 
