@@ -20,16 +20,6 @@ spec:
       script: |
         #!/usr/bin/env sh
         pwd
-        ls -ltr $(workspaces.shared-data.path)
-      image: lachlanevenson/k8s-kubectl:latest
-    - name: import
-      args:
-        - apply 
-        - '-f'
-        - demo/
-        - '-n'
-        - default
-      command:
-        - kubectl
+        kubectl apply -f $(workspaces.shared-data.path)/demo/ -n default
       image: lachlanevenson/k8s-kubectl:latest
 
