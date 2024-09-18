@@ -21,18 +21,9 @@ spec:
     metadata:
       generateName: demo-pipeline-run-
     spec:
-      serviceAccountName: serviceaccount-basic-auth-remote
-      #serviceAccountName: tekton-triggers-sa
+      serviceAccountName: tekton-triggers-sa
       pipelineRef:
-        resolver: git
-        params:
-        - name: url
-          value: https://github.com/martinmlouis/leidos.git
-        - name: revision
-          value: main
-        - name: pathInRepo
-          value: demo/pipeline.yaml
-        #name: clone-read
+        name: clone-read
       podTemplate:
         securityContext:
           fsGroup: 65532          
