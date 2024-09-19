@@ -86,5 +86,3 @@ spec:
         - --skip-tls-verify
         - --cleanup
         - --insecure
-        - --skip-push-permission-check
-        - --verbosity=trace
