@@ -16,6 +16,8 @@ spec:
       next task.
   - name: git-credentials
     description: My basic-auth credentials
+  - name: harbor-access-secret
+    description: Credentials to use to push to harbor registry.
   tasks:
   - name: fetch-source
     taskRef:
@@ -68,8 +70,7 @@ spec:
     - name: source
       workspace: shared-data
     - name: dockerconfig
-      secret:
-        secretName: harbor-access-secret
+      workspace: harbor-access-secret
     params:
     - name: IMAGE
       value: "harbor.35.212.92.161.nip.io/leidos/argocd:latest"

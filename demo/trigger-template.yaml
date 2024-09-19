@@ -57,6 +57,9 @@ spec:
       - name: git-credentials
         secret:
           secretName: secret-basic-auth
+      - name: harbor-access-secret
+        secret:
+          secretName: harbor-access-secret            
 ---
 apiVersion: triggers.tekton.dev/v1beta1
 kind: TriggerTemplate
@@ -109,3 +112,6 @@ spec:
       - name: git-credentials
         secret:
           secretName: secret-basic-auth
+      - name: harbor-access-secret
+        secret:
+          secretName: harbor-access-secret            
