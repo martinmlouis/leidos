@@ -2,9 +2,6 @@
 	"auths": {
 		"harbor.35.212.92.161.nip.io": {
 			"auth": "bWFydGlubG91cmR1c3dhbXk6QWRtaW5AMjEz"
-		},
-		"https://index.docker.io/v1/": {
-			"auth": "bWFydGlubG91cmR1c3dhbXk6S2FuZGlrdXBwYW1AMTIz"
 		}
 	}
 }
