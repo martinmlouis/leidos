@@ -115,3 +115,6 @@ spec:
       - name: harbor-access-secret
         secret:
           secretName: harbor-access-secret            
+          items:
+            - key: .dockerconfig
+              path: config.json  
