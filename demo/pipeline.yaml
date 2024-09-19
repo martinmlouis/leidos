@@ -18,6 +18,7 @@ spec:
     description: My basic-auth credentials
   - name: harbor-access-secret
     description: Credentials to use to push to harbor registry.
+
   tasks:
   - name: fetch-source
     taskRef:
