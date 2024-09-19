@@ -60,3 +60,20 @@ spec:
     - name: path 
       value: "demo"
          
+  - name: kaniko-build-push-harbor
+    runAfter: ["import-resources"]
+    taskRef:
+      name: kaniko
+    workspaces:
+    - name: source
+      workspace: shared-data
+    - name: dockerconfig
+      secret:
+        secretName: harbor-access-secret
+    params:
+    - name: IMAGE
+      value: "harbor.35.212.92.161.nip.io/leidos/argocd:latest"
+    - name: DOCKERFILE
+      value: "builds/argocd-Dockerfile"
+    - name: CONTEXT
+      value: "builds/"

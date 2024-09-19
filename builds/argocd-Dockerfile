@@ -1,0 +1,7 @@
+FROM alpine:3
+
+ENV ARGOCD_VERSION=v2.11.8
+
+RUN curl https://github.com/argoproj/argo-cd/releases/download/$VERSION/argocd-linux-amd64 -O /usr/local/bin/argocd \
+    argocd version --clinet
+
