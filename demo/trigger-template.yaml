@@ -21,8 +21,7 @@ spec:
     metadata:
       generateName: demo-pipeline-run-
     spec:
-      serviceAccountName: serviceaccount-basic-auth-remote
-      #serviceAccountName: tekton-triggers-sa
+      serviceAccountName: tekton-triggers-sa
       pipelineRef:
         resolver: git
         params:
