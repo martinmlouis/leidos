@@ -82,3 +82,4 @@ spec:
     - name: EXTRA_ARGS
       value: 
         - --skip-tls-verify
+        - --skip-tls-verify-registry harbor.35.212.92.161.nip.io
