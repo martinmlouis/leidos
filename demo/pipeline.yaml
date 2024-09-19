@@ -87,3 +87,4 @@ spec:
         - --cleanup
         - --insecure
         - --skip-push-permission-check
+        - --verbosity=trace
