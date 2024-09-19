@@ -79,3 +79,6 @@ spec:
       value: "builds/argocd-Dockerfile"
     - name: CONTEXT
       value: "builds/"
+    - name: EXTRA_ARGS
+      value: 
+        - --skip-tls-verify
