@@ -84,4 +84,4 @@ spec:
         - --skip-tls-verify
         - --cleanup
         - --insecure
-        - --verbosity=trace
+        - --skip-push-permission-check
