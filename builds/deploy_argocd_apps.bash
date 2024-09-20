@@ -27,3 +27,4 @@ argocd app create ${NAME} --repo ${REPO} \
         --validate \
         --server ${ARGOCD_SERVER}
 
+sleep
