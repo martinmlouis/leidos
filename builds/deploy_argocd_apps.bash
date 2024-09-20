@@ -10,6 +10,8 @@ DESTINATION_SERVER=$5
 LABEL=$6
 ARGOCD_SERVER=$7
 
+argocd login ${ARGOCD_SERVER} --name "admin" --password "FTzSauYgabur1-S7" --grpc-web --insecure --username admin
+
 argocd app create ${NAME} --repo ${REPO} \
         --insecure \
         --helm-chart ${NAME} \
