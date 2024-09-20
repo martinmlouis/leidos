@@ -4,7 +4,7 @@ ARG ARGOCD_VERSION=v2.11.8
 
 RUN apk update \
     && apk upgrade \
-    && apk add wget \
+    && apk add wget bash \
     && wget https://github.com/argoproj/argo-cd/releases/download/${ARGOCD_VERSION}/argocd-linux-amd64 -O /usr/local/bin/argocd \
     && chmod a+x /usr/local/bin/argocd \
     && argocd version --client
