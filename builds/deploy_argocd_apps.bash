@@ -2,6 +2,10 @@
 
 set -x
 
+catch_delete_deployment() {
+  argocd app delete ${NAME}
+}
+
 NAME=$1
 REPO=$2
 REVISION=$3
@@ -29,5 +33,7 @@ argocd app create ${NAME} --repo ${REPO} \
         --sync-retry-limit 10 \
         --validate \
         --server ${ARGOCD_SERVER}
+
+trap catch_delete_deployment SIGTERM 
 
 sleep 365d
