@@ -12,6 +12,9 @@ ARGOCD_SERVER=$7
 
 argocd login ${ARGOCD_SERVER} --name "admin" --password "FTzSauYgabur1-S7" --grpc-web --insecure --username admin
 
+argocd app delete ${NAME}
+sleep 30
+
 argocd app create ${NAME} --repo ${REPO} \
         --insecure \
         --helm-chart ${NAME} \
