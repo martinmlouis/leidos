@@ -34,7 +34,7 @@ argocd app create ${NAME} --repo ${REPO} \
         --validate \
         --server ${ARGOCD_SERVER}
 sleep 30
-argocd app delete ${NAME} --force
+argocd app sync ${NAME} --force
 sleep 30
 trap catch_delete_deployment SIGTERM 
 
