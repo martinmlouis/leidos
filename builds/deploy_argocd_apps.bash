@@ -25,17 +25,19 @@ argocd app create ${NAME} --repo ${REPO} \
         --revision ${REVISION}  \
         --dest-namespace ${NAMESPACE}\
         --dest-server ${DESTINATION_SERVER} \
-        --sync-policy automatic \
+        --sync-policy none \
         --name ${NAME} \
         --label ${LABEL} \
-        --self-heal \
-        --sync-option Prune=true \
-        --sync-retry-limit 10 \
+        #--self-heal \
+        #--sync-option Prune=true \
+        #--sync-retry-limit 10 \
         --validate \
         --server ${ARGOCD_SERVER}
 sleep 30
+
 argocd app sync ${NAME} --force
 sleep 30
+
 trap catch_delete_deployment SIGTERM 
 
 sleep 365d
