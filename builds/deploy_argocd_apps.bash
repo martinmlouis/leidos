@@ -3,7 +3,8 @@
 set -x
 
 catch_delete_deployment() {
-  argocd app delete ${NAME} --wait --yes --propagation-policy foreground --cascade 
+  #argocd app delete ${NAME} --wait --yes --propagation-policy foreground --cascade 
+  argocd app delete ${NAME} --yes
 }
 
 NAME=$1
@@ -25,18 +26,18 @@ argocd app create ${NAME} --repo ${REPO} \
         --revision ${REVISION}  \
         --dest-namespace ${NAMESPACE}\
         --dest-server ${DESTINATION_SERVER} \
-        --sync-policy none \
+        --sync-policy automatic \
+        --self-heal \
+        --sync-option Prune=true \
+        --sync-retry-limit 10 \
         --name ${NAME} \
         --label ${LABEL} \
         --validate \
         --server ${ARGOCD_SERVER}
-        #--self-heal \
-        #--sync-option Prune=true \
-        #--sync-retry-limit 10 \
 sleep 30
 
-argocd app sync ${NAME} --force
-sleep 30
+#argocd app sync ${NAME} --force
+#sleep 30
 
 trap catch_delete_deployment SIGTERM 
 
