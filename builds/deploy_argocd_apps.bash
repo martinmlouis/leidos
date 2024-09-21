@@ -25,7 +25,6 @@ argocd app create ${NAME} --repo ${REPO} \
         --helm-chart ${NAME} \
         --revision ${REVISION}  \
         --dest-namespace ${NAMESPACE}\
-        --app-namespace ${NAMESPACE}\
         --dest-server ${DESTINATION_SERVER} \
         --sync-policy automatic \
         --self-heal \
