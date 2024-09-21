@@ -3,7 +3,7 @@
 set -x
 
 catch_delete_deployment() {
-  argocd app delete ${NAME}
+  argocd app delete ${NAME} --yes
 }
 
 NAME=$1
