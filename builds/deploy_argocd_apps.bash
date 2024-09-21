@@ -29,7 +29,8 @@ argocd app create ${NAME} --repo ${REPO} \
         --dest-server ${DESTINATION_SERVER} \
         --sync-policy automatic \
         --self-heal \
-        --sync-option Prune=true CreateNamespace=true \
+        --sync-option Prune=true \
+        --sync-option CreateNamespace=true \
         --sync-retry-limit 10 \
         --name ${NAME} \
         --label ${LABEL} \
