@@ -4,7 +4,12 @@ set -x
 
 catch_delete_deployment() {
   #argocd app delete ${NAME} --wait --yes --propagation-policy foreground --cascade 
-  argocd app delete argo-cd/${NAME} --app-namespace ${NAMESPACE} --yes  --wait --propagation-policy foreground --cascade
+  argocd app delete argo-cd/${NAME} \
+	--app-namespace ${NAMESPACE} \
+	--yes  --wait --propagation-policy foreground --cascade \
+        --insecure \
+        --server ${ARGOCD_SERVER}
+
 }
 
 NAME=$1
