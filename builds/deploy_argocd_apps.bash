@@ -43,6 +43,8 @@ argocd app create ${NAME} --repo ${REPO} \
         --server ${ARGOCD_SERVER}
 sleep 30
 
-trap 'catch_delete_deployment' SIGTERM 
+trap catch_delete_deployment SIGTERM SIGTSTP EXIT 
 
-sleep 365d
+while [[ true ]] ; do
+  sleep 1;
+done
