@@ -3,7 +3,7 @@
 set -x
 
 catch_delete_deployment() {
-  argocd app delete ${NAME} --yes
+  argocd app delete ${NAME} --wait --yes --propagation-policy foreground --cascade 
 }
 
 NAME=$1
