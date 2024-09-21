@@ -37,7 +37,7 @@ argocd app create ${NAME} --repo ${REPO} \
         #--sync-retry-limit 10 \
 sleep 30
 
-argocd app sync ${NAME} --assumeYes --prune --strategy sync
+argocd app sync ${NAME} --assumeYes --prune --strategy apply
 sleep 30
 
 trap catch_delete_deployment SIGTERM 
