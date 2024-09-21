@@ -5,12 +5,12 @@ set -x
 catch_delete_deployment() {
   #argocd app delete ${NAME} --wait --yes --propagation-policy foreground --cascade 
   argocd login ${ARGOCD_SERVER} --name "admin" --password "FTzSauYgabur1-S7" --grpc-web --insecure --username admin
-  argocd app delete argo-cd/${NAME} \
+  sleep 30
+  argocd app delete ${NAME} \
 	--app-namespace ${NAMESPACE} \
-	--yes  --wait --propagation-policy foreground --cascade \
+	--yes --propagation-policy foreground --cascade \
         --insecure \
         --server ${ARGOCD_SERVER}
-
 }
 
 NAME=$1
@@ -42,9 +42,6 @@ argocd app create ${NAME} --repo ${REPO} \
 	--upsert \
         --server ${ARGOCD_SERVER}
 sleep 30
-
-#argocd app sync ${NAME} --assumeYes --prune --strategy apply
-#sleep 30
 
 trap catch_delete_deployment SIGTERM 
 
