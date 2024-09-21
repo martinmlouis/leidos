@@ -28,11 +28,11 @@ argocd app create ${NAME} --repo ${REPO} \
         --sync-policy none \
         --name ${NAME} \
         --label ${LABEL} \
+        --validate \
+        --server ${ARGOCD_SERVER}
         #--self-heal \
         #--sync-option Prune=true \
         #--sync-retry-limit 10 \
-        --validate \
-        --server ${ARGOCD_SERVER}
 sleep 30
 
 argocd app sync ${NAME} --force
