@@ -25,10 +25,11 @@ argocd app create ${NAME} --repo ${REPO} \
         --helm-chart ${NAME} \
         --revision ${REVISION}  \
         --dest-namespace ${NAMESPACE}\
+        --app-namespace ${NAMESPACE}\
         --dest-server ${DESTINATION_SERVER} \
         --sync-policy automatic \
         --self-heal \
-        --sync-option Prune=true \
+        --sync-option Prune=true CreateNamespace=true \
         --sync-retry-limit 10 \
         --name ${NAME} \
         --label ${LABEL} \
