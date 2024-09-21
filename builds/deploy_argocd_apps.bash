@@ -4,6 +4,7 @@ set -x
 
 catch_delete_deployment() {
   #argocd app delete ${NAME} --wait --yes --propagation-policy foreground --cascade 
+  argocd login ${ARGOCD_SERVER} --name "admin" --password "FTzSauYgabur1-S7" --grpc-web --insecure --username admin
   argocd app delete argo-cd/${NAME} \
 	--app-namespace ${NAMESPACE} \
 	--yes  --wait --propagation-policy foreground --cascade \
