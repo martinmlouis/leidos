@@ -5,6 +5,7 @@ set -x
 echo $PATH
 pwd
 ls -l /usr/local/bin
+which argocd 
 
 exit 0
 
