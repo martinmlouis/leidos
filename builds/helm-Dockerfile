@@ -6,8 +6,10 @@ ENV PATH=$PATH:/usr/local/bin
 
 RUN apk update \
     && apk upgrade \
-    && apk add curl wget bash \
-    && wget https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz -O /usr/local/bin/helm \
+    && apk add curl bash \
+    && curl https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz -O helm.tar.gz \
+    && tar -xzvf helm.tar.gz \
+    && mv linux-amd64/helm /usr/local/bin/helm \
     && chmod a+x /usr/local/bin/helm \
     && helm version 
 
