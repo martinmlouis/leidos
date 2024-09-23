@@ -35,3 +35,4 @@ declare VALUES_FILE=$8
         --server ${ARGOCD_SERVER}
 
 exit 0
+
