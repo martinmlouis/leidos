@@ -2,6 +2,7 @@
 
 set -x
 
+which sleep
 catch_delete_deployment() {
   /usr/local/bin/argocd app delete argo-cd/${NAME} \
 	--app-namespace ${NAMESPACE} \
@@ -21,7 +22,6 @@ ARGOCD_SERVER=$7
 VALUES_FILE=$8
 
 /usr/local/bin/argocd login ${ARGOCD_SERVER} --name "admin" --password "FTzSauYgabur1-S7" --grpc-web --insecure --username admin
-which sleep
 
 sleep 7
 
