@@ -2,6 +2,8 @@ FROM alpine:3
 
 ARG ARGOCD_VERSION=v2.11.8
 
+ENV PATH=$PATH:/usr/local/bin
+
 RUN apk update \
     && apk upgrade \
     && apk add wget bash \
@@ -15,3 +17,4 @@ RUN chmod a+x /usr/local/bin/deploy_argocd_apps_helm.bash
 
 COPY deploy_argocd_apps_git.bash /usr/local/bin/deploy_argocd_apps_git.bash
 RUN chmod a+x /usr/local/bin/deploy_argocd_apps_git.bash
+
