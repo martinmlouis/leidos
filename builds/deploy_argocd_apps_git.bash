@@ -3,7 +3,7 @@
 set -x
 
 catch_delete_deployment() {
-  argocd app delete argo-cd/${NAME} \
+  /usr/local/bin/argocd app delete argo-cd/${NAME} \
 	--app-namespace ${NAMESPACE} \
 	--yes --propagation-policy foreground --cascade \
         --insecure \
@@ -20,7 +20,7 @@ LABEL=$6
 ARGOCD_SERVER=$7
 VALUES_FILE=$8
 
-argocd login ${ARGOCD_SERVER} --name "admin" --password "FTzSauYgabur1-S7" --grpc-web --insecure --username admin
+/usr/local/bin/argocd login ${ARGOCD_SERVER} --name "admin" --password "FTzSauYgabur1-S7" --grpc-web --insecure --username admin
 
 exit 0
 sleep 7
