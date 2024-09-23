@@ -12,14 +12,6 @@ declare LABEL=$6
 declare ARGOCD_SERVER=$7
 declare VALUES_FILE=$8
 
-catch_delete_deployment() {
-  /usr/local/bin/argocd app delete argo-cd/${NAME} \
-	--app-namespace ${NAMESPACE} \
-	--yes --propagation-policy foreground --cascade \
-        --insecure \
-        --server ${ARGOCD_SERVER}
-}
-
 /usr/local/bin/argocd login ${ARGOCD_SERVER} --name "admin" --password "FTzSauYgabur1-S7" --grpc-web --insecure --username admin
 
 /bin/sleep 7
@@ -41,10 +33,5 @@ catch_delete_deployment() {
         --validate \
 	--upsert \
         --server ${ARGOCD_SERVER}
-/bin/sleep 7
 
-trap catch_delete_deployment SIGTERM SIGTSTP EXIT 
-
-while true; do
-  /bin/sleep 7
-done
+exit 0
