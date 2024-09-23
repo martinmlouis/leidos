@@ -31,7 +31,6 @@ spec:
           value: main
         - name: pathInRepo
           value: demo/pipeline.yaml
-        #name: clone-read
       podTemplate:
         securityContext:
           fsGroup: 65532          
