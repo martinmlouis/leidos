@@ -17,6 +17,7 @@ declare VALUES_FILE=$8
 /bin/sleep 7
 
 /usr/local/bin/argocd app create "${NAME}" --repo "${REPO}" \
+        --values "${PATH}/${VALUES_FILE}"
         --insecure \
         --path "${PATH}" \
         --dest-namespace "${NAMESPACE}"\
@@ -34,7 +35,6 @@ declare VALUES_FILE=$8
 
 /bin/sleep 7
 
-/usr/local/bin/argocd app set "${NAME}" --values "${PATH}/${VALUES_FILE}"
 
 exit 0
 
