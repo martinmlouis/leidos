@@ -16,8 +16,6 @@ declare VALUES_FILE=$8
 
 /bin/sleep 7
 
-/usr/local/bin/argocd app set "${NAME}" --values "${PATH}/${VALUES_FILE}"
-
 /usr/local/bin/argocd app create "${NAME}" --repo "${REPO}" \
         --insecure \
         --path "${PATH}" \
@@ -33,6 +31,10 @@ declare VALUES_FILE=$8
         --validate \
 	--upsert \
         --server "${ARGOCD_SERVER}"
+
+/bin/sleep 7
+
+/usr/local/bin/argocd app set "${NAME}" --values "${PATH}/${VALUES_FILE}"
 
 exit 0
 
