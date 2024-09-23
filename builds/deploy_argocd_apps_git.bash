@@ -2,7 +2,6 @@
 
 set -x
 
-sleep 7
 # Create a ArgoCD app from git
 declare NAME=$1
 declare REPO=$2
@@ -12,7 +11,10 @@ declare DESTINATION_SERVER=$5
 declare LABEL=$6
 declare ARGOCD_SERVER=$7
 declare VALUES_FILE=$8
+
 sleep 7
+
+exit 0
 
 catch_delete_deployment() {
   /usr/local/bin/argocd app delete argo-cd/${NAME} \
@@ -24,12 +26,9 @@ catch_delete_deployment() {
 
 /usr/local/bin/argocd login ${ARGOCD_SERVER} --name "admin" --password "FTzSauYgabur1-S7" --grpc-web --insecure --username admin
 
-sleep 7
+/bin/sleep 7
 
-exit 0
-sleep 7
-
-argocd app set ${NAME} --values ${REPO}/${PATH}/${VALUES_FILE}
+/usr/local/bin/argocd app set ${NAME} --values ${REPO}/${PATH}/${VALUES_FILE}
 
 argocd app create ${NAME} --repo ${REPO} \
         --insecure \
