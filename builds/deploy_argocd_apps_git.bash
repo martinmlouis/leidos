@@ -2,13 +2,6 @@
 
 set -x
 
-echo $PATH
-pwd
-ls -l /usr/local/bin
-which argocd 
-
-exit 0
-
 catch_delete_deployment() {
   argocd app delete argo-cd/${NAME} \
 	--app-namespace ${NAMESPACE} \
@@ -29,6 +22,7 @@ VALUES_FILE=$8
 
 argocd login ${ARGOCD_SERVER} --name "admin" --password "FTzSauYgabur1-S7" --grpc-web --insecure --username admin
 
+exit 0
 sleep 7
 
 argocd app set ${NAME} --values ${REPO}/${PATH}/${VALUES_FILE}
