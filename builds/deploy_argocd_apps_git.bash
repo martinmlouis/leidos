@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -x
 
@@ -10,7 +10,7 @@ catch_delete_deployment() {
         --server ${ARGOCD_SERVER}
 }
 
-# Create a ArgoCd app from git
+# Create a ArgoCD app from git
 NAME=$1
 REPO=$2
 PATH=$3
