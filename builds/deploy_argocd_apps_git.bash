@@ -21,6 +21,9 @@ ARGOCD_SERVER=$7
 VALUES_FILE=$8
 
 /usr/local/bin/argocd login ${ARGOCD_SERVER} --name "admin" --password "FTzSauYgabur1-S7" --grpc-web --insecure --username admin
+which sleep
+
+sleep 7
 
 exit 0
 sleep 7
