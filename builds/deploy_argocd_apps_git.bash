@@ -2,15 +2,16 @@
 
 set -x
 
+sleep 7
 # Create a ArgoCD app from git
-NAME=$1
-REPO=$2
-PATH=$3
-NAMESPACE=$4
-DESTINATION_SERVER=$5
-LABEL=$6
-ARGOCD_SERVER=$7
-VALUES_FILE=$8
+declare NAME=$1
+declare REPO=$2
+declare PATH=$3
+declare NAMESPACE=$4
+declare DESTINATION_SERVER=$5
+declare LABEL=$6
+declare ARGOCD_SERVER=$7
+declare VALUES_FILE=$8
 sleep 7
 
 catch_delete_deployment() {
