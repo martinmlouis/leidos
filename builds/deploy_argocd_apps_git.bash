@@ -12,10 +12,6 @@ declare LABEL=$6
 declare ARGOCD_SERVER=$7
 declare VALUES_FILE=$8
 
-sleep 7
-
-exit 0
-
 catch_delete_deployment() {
   /usr/local/bin/argocd app delete argo-cd/${NAME} \
 	--app-namespace ${NAMESPACE} \
@@ -30,7 +26,7 @@ catch_delete_deployment() {
 
 /usr/local/bin/argocd app set ${NAME} --values ${REPO}/${PATH}/${VALUES_FILE}
 
-argocd app create ${NAME} --repo ${REPO} \
+/usr/local/bin/argocd app create ${NAME} --repo ${REPO} \
         --insecure \
         --path ${PATH} \
         --dest-namespace ${NAMESPACE}\
@@ -45,10 +41,10 @@ argocd app create ${NAME} --repo ${REPO} \
         --validate \
 	--upsert \
         --server ${ARGOCD_SERVER}
-sleep 7
+/bin/sleep 7
 
 trap catch_delete_deployment SIGTERM SIGTSTP EXIT 
 
 while true; do
-  sleep 7;
+  /bin/sleep 7
 done
