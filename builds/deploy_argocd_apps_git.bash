@@ -2,6 +2,12 @@
 
 set -x
 
+echo $PATH
+pwd
+ls -l /usr/local/bin
+
+exit 0
+
 catch_delete_deployment() {
   argocd app delete argo-cd/${NAME} \
 	--app-namespace ${NAMESPACE} \
