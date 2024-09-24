@@ -25,6 +25,12 @@ argocd login ${ARGOCD_SERVER} --name "admin" --password "FTzSauYgabur1-S7" --grp
 
 sleep 7
 
+argocd app list ${NAME}
+app_deployment_status=$?
+if ! ${app_deployment_status}; then
+  exit 0
+fi
+
 argocd app create ${NAME} --repo ${REPO} \
         --insecure \
         --helm-chart ${NAME} \
