@@ -25,7 +25,7 @@ argocd login ${ARGOCD_SERVER} --name "admin" --password "FTzSauYgabur1-S7" --grp
 
 sleep 77
 
-if [[ $(argocd app list |grep $NAME}|wc -l) > 0 ]]; then
+if [[ $(argocd app list |grep ${NAME}|wc -l) > 0 ]]; then
   sleep 365d
 fi
 
