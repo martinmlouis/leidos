@@ -41,7 +41,7 @@ argocd app patch ${NAME} --repo ${REPO} \
         --label ${LABEL} \
         --validate \
 	--upsert \
-        --server http://${ARGOCD_SERVER}
+        --server ${ARGOCD_SERVER}
   sleep 365d
 fi
 
