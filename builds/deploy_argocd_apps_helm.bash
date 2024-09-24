@@ -21,7 +21,7 @@ DESTINATION_SERVER=$5
 LABEL=$6
 ARGOCD_SERVER=$7
 
-argocd login http://${ARGOCD_SERVER} --name "admin" --password "FTzSauYgabur1-S7" --grpc-web --insecure --username admin
+argocd login http://${ARGOCD_SERVER} --name "admin" --password "UEdnzGuEOq-3nnqn" --grpc-web --insecure --username admin
 
 sleep 77
 

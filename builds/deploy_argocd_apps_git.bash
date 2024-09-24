@@ -12,7 +12,7 @@ declare LABEL=$6
 declare ARGOCD_SERVER=$7
 declare VALUES_FILE=$8
 
-/usr/local/bin/argocd login "${ARGOCD_SERVER}" --name "admin" --password "FTzSauYgabur1-S7" --grpc-web --insecure --username admin
+/usr/local/bin/argocd login "${ARGOCD_SERVER}" --name "admin" --password "UEdnzGuEOq-3nnqn" --grpc-web --insecure --username admin
 
 /bin/sleep 7
 
