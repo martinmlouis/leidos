@@ -21,12 +21,23 @@ DESTINATION_SERVER=$5
 LABEL=$6
 ARGOCD_SERVER=$7
 
-argocd login http://${ARGOCD_SERVER} --name "admin" --password "UEdnzGuEOq-3nnqn" --grpc-web --insecure --username admin
+if [ echo "${ARGOCD_SERVER}"|grep dev ]; then
+  ENVIRONMENT="dev"     
+elif [ echo "${ARGOCD_SERVER}"|grep "test" ]; then
+  ENVIRONMENT="test"    
+elif [ echo "${ARGOCD_SERVER}"|grep impl ]; then
+  ENVIRONMENT="impl"    
+elif [ echo "${ARGOCD_SERVER}"|grep prod ]; then
+  ENVIRONMENT="prod"
+fi
+
+argocd login ${ARGOCD_SERVER} --name "admin" --password "UEdnzGuEOq-3nnqn" --grpc-web --insecure --username admin
 
 sleep 77
 
 if [[ $(argocd app list |grep ${NAME}|wc -l) > 0 ]]; then
 argocd app patch ${NAME} --repo ${REPO} \
+	--values "${ENVIRONMENT}-values.yaml" \
         --insecure \
         --helm-chart ${NAME} \
         --revision ${REVISION}  \
@@ -46,6 +57,7 @@ argocd app patch ${NAME} --repo ${REPO} \
 fi
 
 argocd app create ${NAME} --repo ${REPO} \
+	--values "${ENVIRONMENT}-values.yaml" \
         --insecure \
         --helm-chart ${NAME} \
         --revision ${REVISION}  \

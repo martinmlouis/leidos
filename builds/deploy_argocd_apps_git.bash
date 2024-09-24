@@ -12,6 +12,16 @@ declare LABEL=$6
 declare ARGOCD_SERVER=$7
 declare VALUES_FILE=$8
 
+if [ echo "${ARGOCD_SERVER}"|grep dev ]; then
+  ENVIRONMENT="dev"	
+elif [ echo "${ARGOCD_SERVER}"|grep "test" ]; then
+  ENVIRONMENT="test"	
+elif [ echo "${ARGOCD_SERVER}"|grep impl ]; then
+  ENVIRONMENT="impl"	
+elif [ echo "${ARGOCD_SERVER}"|grep prod ]; then
+  ENVIRONMENT="prod"	
+fi
+
 /usr/local/bin/argocd login "${ARGOCD_SERVER}" --name "admin" --password "UEdnzGuEOq-3nnqn" --grpc-web --insecure --username admin
 
 /bin/sleep 7
