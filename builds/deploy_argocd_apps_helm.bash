@@ -27,7 +27,7 @@ sleep 7
 
 argocd app list ${NAME}
 app_deployment_status=$?
-if ! ${app_deployment_status}; then
+if [[ ! ${app_deployment_status} ]]; then
   sleep 365d
 fi
 
