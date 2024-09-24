@@ -25,9 +25,7 @@ argocd login ${ARGOCD_SERVER} --name "admin" --password "FTzSauYgabur1-S7" --grp
 
 sleep 7
 
-argocd app list ${NAME}
-app_deployment_status=$?
-if [[ "${app_deployment_status}" = "0" ]]; then
+if [[ $(argocd app list |grep $NAME}|wc -l) > 0 ]]; then
   sleep 365d
 fi
 
