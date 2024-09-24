@@ -21,7 +21,7 @@ DESTINATION_SERVER=$5
 LABEL=$6
 ARGOCD_SERVER=$7
 
-argocd login ${ARGOCD_SERVER} --name "admin" --password "FTzSauYgabur1-S7" --grpc-web --insecure --username admin
+argocd login http://${ARGOCD_SERVER} --name "admin" --password "FTzSauYgabur1-S7" --grpc-web --insecure --username admin
 
 sleep 77
 
@@ -44,7 +44,7 @@ argocd app create ${NAME} --repo ${REPO} \
         --label ${LABEL} \
         --validate \
 	--upsert \
-        --server ${ARGOCD_SERVER}
+        --server http://${ARGOCD_SERVER}
 sleep 7
 
 trap catch_delete_deployment SIGTERM SIGTSTP EXIT 
