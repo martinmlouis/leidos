@@ -28,7 +28,7 @@ sleep 7
 argocd app list ${NAME}
 app_deployment_status=$?
 if ! ${app_deployment_status}; then
-  exit 0
+  sleep 365d
 fi
 
 argocd app create ${NAME} --repo ${REPO} \
