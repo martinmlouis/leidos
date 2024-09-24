@@ -26,7 +26,23 @@ argocd login http://${ARGOCD_SERVER} --name "admin" --password "FTzSauYgabur1-S7
 sleep 77
 
 if [[ $(argocd app list |grep ${NAME}|wc -l) > 0 ]]; then
-  sleep 365d
+argocd app patch ${NAME} --repo ${REPO} \
+        --insecure \
+        --helm-chart ${NAME} \
+        --revision ${REVISION}  \
+        --dest-namespace ${NAMESPACE}\
+        --dest-server ${DESTINATION_SERVER} \
+        --sync-policy automatic \
+        --self-heal \
+        --sync-option Prune=true \
+        --sync-option CreateNamespace=true \
+        --sync-retry-limit 10 \
+        --name ${NAME} \
+        --label ${LABEL} \
+        --validate \
+	--upsert \
+        --server http://${ARGOCD_SERVER}
+  sleep 7
 fi
 
 argocd app create ${NAME} --repo ${REPO} \
@@ -50,5 +66,5 @@ sleep 7
 trap catch_delete_deployment SIGTERM SIGTSTP EXIT 
 
 while true; do
-  sleep 7;
+  sleep 77;
 done
