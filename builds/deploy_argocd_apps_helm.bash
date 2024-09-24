@@ -42,7 +42,7 @@ argocd app patch ${NAME} --repo ${REPO} \
         --validate \
 	--upsert \
         --server http://${ARGOCD_SERVER}
-  sleep 7
+  sleep 365d
 fi
 
 argocd app create ${NAME} --repo ${REPO} \
