@@ -16,4 +16,3 @@ RUN apk update \
 COPY build_push_argocd_apps_helm.bash /usr/local/bin/build_push_argocd_apps_helm.bash
 RUN chmod a+x /usr/local/bin/build_push_argocd_apps_helm.bash
 
-
