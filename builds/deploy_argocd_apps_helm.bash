@@ -23,9 +23,9 @@ ARGOCD_SERVER=$7
 
 argocd login ${ARGOCD_SERVER} --name "admin" --password "FTzSauYgabur1-S7" --grpc-web --insecure --username admin
 
-sleep 7
+sleep 77
 
-if [[ $(argocd app list |grep $NAME}|wc -l) > 1 ]]; then
+if [[ $(argocd app list |grep $NAME}|wc -l) > 0 ]]; then
   sleep 365d
 fi
 
