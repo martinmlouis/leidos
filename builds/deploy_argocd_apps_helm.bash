@@ -72,7 +72,7 @@ argocd app create ${NAME} --repo ${REPO} \
         --label ${LABEL} \
         --validate \
 	--upsert \
-        --server http://${ARGOCD_SERVER}
+        --server ${ARGOCD_SERVER}
 sleep 7
 
 trap catch_delete_deployment SIGTERM SIGTSTP EXIT 
