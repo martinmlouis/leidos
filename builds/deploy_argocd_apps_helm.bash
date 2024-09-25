@@ -35,7 +35,7 @@ argocd login ${ARGOCD_SERVER} --name "admin" --password "UEdnzGuEOq-3nnqn" --grp
 
 sleep 7
 
-if [[ $(argocd app list |grep ${NAME}|wc -l) > 0 ]]; then
+if [ $(argocd app list |grep ${NAME}|wc -l) > 0 ]; then
   argocd app delete ${NAME}
   sleep 300
 fi
