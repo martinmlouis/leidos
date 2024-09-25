@@ -38,7 +38,7 @@ sleep 7
 if [ "$(argocd app list |grep "${NAME}"|wc -l)" -gt  "0" ]; then
   #argocd app patch ${NAME} --patch "{'spec': { 'source': { 'targetRevision': '${REVISION}' } }}" --type merge
   argocd app delete ${NAME}
-  sleep 77
+  sleep 120
 fi
 
 argocd app create ${NAME} --repo ${REPO} \
