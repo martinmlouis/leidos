@@ -21,13 +21,13 @@ DESTINATION_SERVER=$5
 LABEL=$6
 ARGOCD_SERVER=$7
 
-if [ echo "${ARGOCD_SERVER}"|grep dev ]; then
+if [ $(echo "${ARGOCD_SERVER}"|grep dev|wc -l) > 0 ]; then
   ENVIRONMENT="dev"     
-elif [ echo "${ARGOCD_SERVER}"|grep "test" ]; then
+elif [ $(echo "${ARGOCD_SERVER}"|grep "test"|wc -l) > 0 ]; then
   ENVIRONMENT="test"    
-elif [ echo "${ARGOCD_SERVER}"|grep impl ]; then
+elif [ $(echo "${ARGOCD_SERVER}"|grep impl|wc -l) > 0 ]; then
   ENVIRONMENT="impl"    
-elif [ echo "${ARGOCD_SERVER}"|grep prod ]; then
+elif [ $(echo "${ARGOCD_SERVER}"|grep prod|wc -l) > 0 ]; then
   ENVIRONMENT="prod"
 fi
 
