@@ -39,6 +39,7 @@ if [ "$(argocd app list |grep "${NAME}"|wc -l)" -gt  "0" ]; then
   argocd app patch ${NAME} --patch '{"spec": { "source": { "targetRevision": "${REVISION}" } }}' --type merge
   sleep 300
 fi
+
 argocd app create ${NAME} --repo ${REPO} \
 	--values "${ENVIRONMENT}-values.yaml" \
         --insecure \
