@@ -2,8 +2,6 @@ FROM alpine:3.17
 
 ARG HELM_VERSION=3.16.1
 
-ENV PATH=$PATH:/usr/local/bin
-
 RUN apk update \
     && apk upgrade \
     && apk add curl bash \
@@ -13,6 +11,6 @@ RUN apk update \
     && chmod a+x /usr/local/bin/helm \
     && helm version 
 
-COPY build_push_argocd_apps_helm.bash /usr/local/bin/build_push_argocd_apps_helm.bash
-RUN chmod a+x /usr/local/bin/build_push_argocd_apps_helm.bash
+#COPY build_push_argocd_apps_helm.bash /usr/local/bin/build_push_argocd_apps_helm.bash
+#RUN chmod a+x /usr/local/bin/build_push_argocd_apps_helm.bash
 
