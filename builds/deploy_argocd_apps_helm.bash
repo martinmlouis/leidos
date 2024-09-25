@@ -33,29 +33,12 @@ fi
 
 argocd login ${ARGOCD_SERVER} --name "admin" --password "UEdnzGuEOq-3nnqn" --grpc-web --insecure --username admin
 
-sleep 77
+sleep 7
 
 if [[ $(argocd app list |grep ${NAME}|wc -l) > 0 ]]; then
-argocd app patch ${NAME} --repo ${REPO} \
-	--values "${ENVIRONMENT}-values.yaml" \
-        --insecure \
-        --helm-chart ${NAME} \
-        --revision ${REVISION}  \
-        --dest-namespace ${NAMESPACE}\
-        --dest-server ${DESTINATION_SERVER} \
-        --sync-policy automatic \
-        --self-heal \
-        --sync-option Prune=true \
-        --sync-option CreateNamespace=true \
-        --sync-retry-limit 10 \
-        --name ${NAME} \
-        --label ${LABEL} \
-        --validate \
-	--upsert \
-        --server ${ARGOCD_SERVER}
-  sleep 365d
+  argocd app delete ${NAME}
+  sleep 300
 fi
-
 argocd app create ${NAME} --repo ${REPO} \
 	--values "${ENVIRONMENT}-values.yaml" \
         --insecure \
