@@ -12,11 +12,9 @@ RUN apk update \
     && argocd version --client
 
 COPY deploy_argocd_apps_helm.bash /usr/local/bin/deploy_argocd_apps_helm.bash
-
 RUN chmod a+x /usr/local/bin/deploy_argocd_apps_helm.bash
 
 
 COPY deploy_argocd_apps_git.bash /usr/local/bin/deploy_argocd_apps_git.bash
-
 RUN chmod a+x /usr/local/bin/deploy_argocd_apps_git.bash
 
