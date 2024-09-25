@@ -36,7 +36,7 @@ argocd login ${ARGOCD_SERVER} --name "admin" --password "UEdnzGuEOq-3nnqn" --grp
 sleep 7
 
 if [ "$(argocd app list |grep "${NAME}"|wc -l)" -gt  "0" ]; then
-  argocd app patch ${NAME} --patch '{"spec": { "source": { "targetRevision": "${REVISION}" } }}' --type merge
+  argocd app patch ${NAME} --patch "{'spec': { 'source': { 'targetRevision': '${REVISION}' } }}" --type merge
   sleep 300
 fi
 
