@@ -80,7 +80,7 @@ spec:
     - name: DOCKERFILE
       value: "builds/argocd-Dockerfile"
     - name: CONTEXT
-      value: "builds/"
+      value: "builds"
     - name: EXTRA_ARGS
       value: 
         - --skip-tls-verify
@@ -104,7 +104,7 @@ spec:
     - name: DOCKERFILE
       value: "builds/helm-Dockerfile"
     - name: CONTEXT
-      value: "builds/"
+      value: "builds"
     - name: EXTRA_ARGS
       value: 
         - --skip-tls-verify
