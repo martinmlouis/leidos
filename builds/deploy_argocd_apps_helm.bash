@@ -78,5 +78,5 @@ sleep 7
 trap catch_delete_deployment SIGTERM SIGTSTP EXIT 
 
 while true; do
-  sleep 77;
+  sleep 1;
 done
