@@ -22,7 +22,7 @@ LABEL=$6
 ARGOCD_SERVER=$7
 
 if [ $(echo "${ARGOCD_SERVER}"|grep dev|wc -l) > 0 ]; then
-  ENVIRONMENT="dev"     
+  ENVIRONMENT="prod"     
 elif [ $(echo "${ARGOCD_SERVER}"|grep "test"|wc -l) > 0 ]; then
   ENVIRONMENT="test"    
 elif [ $(echo "${ARGOCD_SERVER}"|grep impl|wc -l) > 0 ]; then
@@ -41,6 +41,13 @@ if [ "$(argocd app list |grep "${NAME}"|wc -l)" -gt  "0" ]; then
   #argocd app delete ${NAME}
   sleep 120
 fi
+
+
+trap catch_delete_deployment SIGTERM SIGTSTP EXIT 
+
+while true; do
+  sleep 1;
+done
 
 argocd app create ${NAME} --repo ${REPO} \
         --values "${ENVIRONMENT}-values.yaml" \
