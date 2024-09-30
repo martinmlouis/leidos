@@ -22,7 +22,7 @@ LABEL=$6
 ARGOCD_SERVER=$7
 
 if [ $(echo "${ARGOCD_SERVER}"|grep dev|wc -l) > 0 ]; then
-  ENVIRONMENT="dev"     
+  ENVIRONMENT="prod"     
 elif [ $(echo "${ARGOCD_SERVER}"|grep "test"|wc -l) > 0 ]; then
   ENVIRONMENT="test"    
 elif [ $(echo "${ARGOCD_SERVER}"|grep impl|wc -l) > 0 ]; then
@@ -41,11 +41,11 @@ if [ "$(argocd app list |grep "${NAME}"|wc -l)" -gt  "0" ]; then
   sleep 120
 fi
 
-argocd app set --values prod-values.yaml
-sleep 7
+#argocd app set --values prod-values.yaml
+#sleep 7
 
-##--values "${ENVIRONMENT}-values.yaml" \
 argocd app create ${NAME} --repo ${REPO} \
+        --values "${ENVIRONMENT}-values.yaml" \
         --insecure \
         --helm-chart ${NAME} \
         --revision ${REVISION}  \
