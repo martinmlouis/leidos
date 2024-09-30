@@ -22,7 +22,7 @@ LABEL=$6
 ARGOCD_SERVER=$7
 
 if [ $(echo "${ARGOCD_SERVER}"|grep dev|wc -l) > 0 ]; then
-  ENVIRONMENT="prod"     
+  ENVIRONMENT="dev"     
 elif [ $(echo "${ARGOCD_SERVER}"|grep "test"|wc -l) > 0 ]; then
   ENVIRONMENT="test"    
 elif [ $(echo "${ARGOCD_SERVER}"|grep impl|wc -l) > 0 ]; then
