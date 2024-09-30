@@ -37,13 +37,10 @@ sleep 7
 
 
 if [ "$(argocd app list |grep "${NAME}"|wc -l)" -gt  "0" ]; then
-  argocd app patch ${NAME} --patch "{'spec': { 'source': { 'helm': {'valueFiles': '${ENVIRONMENT}-values.yaml' } }}}" --type merge
+  argocd app patch ${NAME} --patch "{\"spec\": { \"source\": { \"helm\": {\"valueFiles\": \"${ENVIRONMENT}-values.yaml\" } }}}" --type merge
   #argocd app delete ${NAME}
   sleep 120
 fi
-
-#argocd app set --values prod-values.yaml
-#sleep 7
 
 argocd app create ${NAME} --repo ${REPO} \
         --values "${ENVIRONMENT}-values.yaml" \
