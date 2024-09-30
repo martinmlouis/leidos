@@ -41,8 +41,11 @@ if [ "$(argocd app list |grep "${NAME}"|wc -l)" -gt  "0" ]; then
   sleep 120
 fi
 
+argocd app set --values prod-values.yaml
+sleep 7
+
+##--values "${ENVIRONMENT}-values.yaml" \
 argocd app create ${NAME} --repo ${REPO} \
-	--values "${ENVIRONMENT}-values.yaml" \
         --insecure \
         --helm-chart ${NAME} \
         --revision ${REVISION}  \
