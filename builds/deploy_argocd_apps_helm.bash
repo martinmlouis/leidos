@@ -31,7 +31,7 @@ elif [ $(echo "${ARGOCD_SERVER}"|grep prod|wc -l) > 0 ]; then
   ENVIRONMENT="prod"
 fi
 
-argocd login ${ARGOCD_SERVER} --name "admin" --password "7-ahPcw7Mo7hxGVz" --grpc-web --insecure --username admin
+argocd login ${ARGOCD_SERVER} --name "admin" --password "VN3Py3aGnpHXjYU2" --grpc-web --insecure --username admin
 
 sleep 7
 
