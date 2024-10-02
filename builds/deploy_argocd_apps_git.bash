@@ -22,7 +22,7 @@ elif [ $(echo "${ARGOCD_SERVER}"|grep prod|wc -l) > 0 ]; then
   ENVIRONMENT="prod"
 fi
 
-/usr/local/bin/argocd login "${ARGOCD_SERVER}" --name "admin" --password "0chkvMUewiuWRWrv" --grpc-web --insecure --username admin
+/usr/local/bin/argocd login "${ARGOCD_SERVER}" --name "admin" --password "11dOQ4KX03no7vZZ" --grpc-web --insecure --username admin
 
 /bin/sleep 7
 
