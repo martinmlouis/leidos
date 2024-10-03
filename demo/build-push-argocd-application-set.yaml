@@ -6,6 +6,7 @@ spec:
   description: Build and push the argocd application set to gitrepo.
   workspaces:
   - name: source
+  - name: harbor-access-secret
   steps:
   - name: build-push-argocd-application-set
     image: alpine:latest
