@@ -23,7 +23,7 @@ spec:
     description: Credentials to use to push to harbor registry.
 
   tasks:
-  - name: fetch-github-repo
+  - name: fetch-source
     taskRef:
       resolver: git
       params:
