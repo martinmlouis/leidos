@@ -12,6 +12,9 @@ spec:
   - name: builder-image-argocd-application-set
     type: string
     description: The build image used to build and push argocd application set.
+  - name: builder-image-argocd-application-set-repo-url
+    type: string
+    description: The build repo to use to trigger argocd deployments.
   workspaces:
   - name: shared-data
     description: | 
@@ -55,6 +58,17 @@ spec:
     params:
     - name: url
       value: $(params.repo-url)
+  - name: fetch-source-argocd-deployments
+    taskRef:
+      name: git-clone
+    workspaces:
+    - name: output
+      workspace: shared-data
+    - name: basic-auth
+      workspace: git-credentials
+    params:
+    - name: url
+      value: $(params.builder-image-argocd-application-set-repo-url)
   - name: show-readme
     runAfter: ["fetch-source"]
     taskRef:
