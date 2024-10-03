@@ -72,8 +72,8 @@ spec:
     workspaces:
     - name: source
       workspace: shared-data
-    - name: dockerconfig
-      workspace: harbor-access-secret
+##    - name: dockerconfig
+##      workspace: harbor-access-secret
   - name: show-readme-github
     runAfter: ["fetch-source"]
     taskRef:
