@@ -2,8 +2,11 @@ FROM alpine:3.17
 
 RUN apk update \
     && apk upgrade \
-    && apk add gcc make gnupg bash perl-dev wget
+    && apk add --no-cache bash libc-dev gcc make gnupg bash perl-dev wget
+
+SHELL ["/bin/bash", "-c"]
+
 RUN cpan App::cpanminus 
 
-RUN cpanm YAML::XS
+#RUN cpanm YAML::XS
 
