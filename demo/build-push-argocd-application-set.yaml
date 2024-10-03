@@ -4,12 +4,14 @@ metadata:
   name: build-push-argocd-application-set
 spec:
   description: Build and push the argocd application set to gitrepo.
+  params:
+  - name: BUILDER_IMAGE_ARGOCD_APPLICATION_SET
   workspaces:
   - name: source
   - name: harbor-access-secret
   steps:
   - name: build-push-argocd-application-set
-    image: alpine:latest
+    image: $(params.BUILDER_IMAGE_ARGOCD_APPLICATION_SET)
     script: | 
       #!/usr/bin/env sh
       pwd
