@@ -124,7 +124,7 @@ spec:
     - name: BUILDER_IMAGE
       value: "gcr.io/kaniko-project/executor:latest"
     - name: IMAGE
-      value: "harbor.35.212.92.161.nip.io/leidos/perl:5.40.0"
+      value: "harbor.35.212.92.161.nip.io/leidos/perl:5.36.2"
     - name: DOCKERFILE
       value: "builds/perl-Dockerfile"
     - name: CONTEXT
