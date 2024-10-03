@@ -8,5 +8,5 @@ SHELL ["/bin/bash", "-c"]
 
 RUN cpan App::cpanminus 
 
-#RUN cpanm YAML::XS
+RUN cpanm YAML::XS
 
