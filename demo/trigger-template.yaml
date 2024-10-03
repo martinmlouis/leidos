@@ -43,6 +43,8 @@ spec:
         value: $(tt.params.gitrevision)
       - name: repo-url
         value: $(tt.params.repo-url)
+      - name: builder-image-argocd-application-set
+        value: "harbor.35.212.92.161.nip.io/leidos/perl:5.36.2"
       workspaces:
       - name: shared-data
         volumeClaimTemplate:

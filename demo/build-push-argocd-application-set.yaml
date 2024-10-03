@@ -1,0 +1,16 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: build-push-argocd-application-set
+spec:
+  description: Build and push the argocd application set to gitrepo.
+  workspaces:
+  - name: source
+  steps:
+  - name: build-push-argocd-application-set
+    image: alpine:latest
+    script: | 
+      #!/usr/bin/env sh
+      pwd
+      ls -ltr $(workspaces.source.path)
+      #cat $(workspaces.source.path)/README.md

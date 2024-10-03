@@ -9,6 +9,9 @@ spec:
   - name: repo-url
     type: string
     description: The git repo URL to clone from.
+  - name: builder-image-argocd-application-set
+    type: string
+    description: The build image used to build and push argocd application set.
   workspaces:
   - name: shared-data
     description: | 
@@ -20,17 +23,38 @@ spec:
     description: Credentials to use to push to harbor registry.
 
   tasks:
-  - name: fetch-source
+  - name: fetch-github-repo
     taskRef:
-      name: git-clone
+      resolver: git
+      params:
+        - name: url
+          value: https://github.com/martinmlouis/github_builds.git
+        - name: pathInRepo
+          value: tekton-resources/git-clone.yaml
+        - name: revision
+          value: $(params.branch)
+    params:
+    - name: url
+      value: $(params.repo-url)
+    - name: branch
+      value: "dev"
     workspaces:
     - name: output
       workspace: shared-data
     - name: basic-auth
       workspace: git-credentials
-    params:
-    - name: url
-      value: $(params.repo-url)
+
+##  - name: fetch-source
+##    taskRef:
+##      name: git-clone
+##    workspaces:
+##    - name: output
+##      workspace: shared-data
+##    - name: basic-auth
+##      workspace: git-credentials
+##    params:
+##    - name: url
+##      value: $(params.repo-url)
   - name: show-readme
     runAfter: ["fetch-source"]
     taskRef:
@@ -38,6 +62,18 @@ spec:
     workspaces:
     - name: source
       workspace: shared-data
+  - name: build-push-argocd-application-set
+    runAfter: ["fetch-source"]
+    taskRef:
+      name: build-push-argocd-application-set
+    params:
+    - name: BUILDER_IMAGE_ARGOCD_APPLICATION_SET
+      value: $(params.builder-image-argocd-application-set)
+    workspaces:
+    - name: source
+      workspace: shared-data
+    - name: dockerconfig
+      workspace: harbor-access-secret
   - name: show-readme-github
     runAfter: ["fetch-source"]
     taskRef:
