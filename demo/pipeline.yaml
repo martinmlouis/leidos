@@ -110,3 +110,27 @@ spec:
         - --skip-tls-verify
         - --cleanup
         - --insecure
+
+  - name: kaniko-build-push-perl-harbor
+    runAfter: ["fetch-source"]
+    taskRef:
+      name: kaniko
+    workspaces:
+    - name: source
+      workspace: shared-data
+    - name: dockerconfig
+      workspace: harbor-access-secret
+    params:
+    - name: BUILDER_IMAGE
+      value: "gcr.io/kaniko-project/executor:latest"
+    - name: IMAGE
+      value: "harbor.35.212.92.161.nip.io/leidos/perl:5.40.0"
+    - name: DOCKERFILE
+      value: "builds/perl-Dockerfile"
+    - name: CONTEXT
+      value: "builds"
+    - name: EXTRA_ARGS
+      value: 
+        - --skip-tls-verify
+        - --cleanup
+        - --insecure

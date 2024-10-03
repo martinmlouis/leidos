@@ -1,0 +1,8 @@
+FROM alpine:3.17
+
+RUN apk update \
+    && apk upgrade \
+    && apk add gcc make zlib-dev gnupg bash perl-dev \
+RUN cpan App::cpanminus \
+    && cpanm --help
+
