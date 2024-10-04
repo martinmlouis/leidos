@@ -26,49 +26,50 @@ spec:
     description: Credentials to use to push to harbor registry.
 
   tasks:
+  - name: fetch-source
+    taskRef:
+      resolver: git
+      params:
+        - name: url
+          value: https://github.com/martinmlouis/github_builds.git
+        - name: pathInRepo
+          value: tekton-resources/git-clone.yaml
+        - name: revision
+          value: $(params.branch)
+    params:
+    - name: url
+      value: $(params.repo-url)
+    - name: branch
+      value: $(params.branch)
+    workspaces:
+    - name: output
+      workspace: shared-data
+    - name: basic-auth
+      workspace: git-credentials
+
 ##  - name: fetch-source
 ##    taskRef:
-##      resolver: git
-##      params:
-##        - name: url
-##          value: https://github.com/martinmlouis/github_builds.git
-##        - name: pathInRepo
-##          value: tekton-resources/git-clone.yaml
-##        - name: revision
-##          value: $(params.branch)
-##    params:
-##    - name: url
-##      value: $(params.repo-url)
-##    - name: branch
-##      value: $(params.branch)
+##      name: git-clone
 ##    workspaces:
 ##    - name: output
 ##      workspace: shared-data
 ##    - name: basic-auth
 ##      workspace: git-credentials
-
-  - name: fetch-source
-    taskRef:
-      name: git-clone
-    workspaces:
-    - name: output
-      workspace: shared-data
-    - name: basic-auth
-      workspace: git-credentials
-    params:
-    - name: url
-      value: $(params.repo-url)
-  - name: fetch-source-argocd-deployments
-    taskRef:
-      name: git-clone
-    workspaces:
-    - name: output
-      workspace: shared-data
-    - name: basic-auth
-      workspace: git-credentials
-    params:
-    - name: url
-      value: $(params.builder-image-argocd-application-set-repo-url)
+##    params:
+##    - name: url
+##      value: $(params.repo-url)
+#
+##  - name: fetch-source-argocd-deployments
+##    taskRef:
+##      name: git-clone
+##    workspaces:
+##    - name: output
+##      workspace: shared-data
+##    - name: basic-auth
+##      workspace: git-credentials
+##    params:
+##    - name: url
+##      value: $(params.builder-image-argocd-application-set-repo-url)
   - name: show-readme
     runAfter: ["fetch-source"]
     taskRef:
