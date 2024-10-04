@@ -45,11 +45,11 @@ spec:
       print Dumper $deployment_request;
 
       ## TEST Case for HELM sync
-      $deployment_request->{'echimp-helmops'}->{'environment'} = "dev";
+      $deployment_request->{'echimp-helmops'}->{'environment'} = "impl";
       $deployment_request->{'echimp-helmops'}->{'targetRevision'} = "0.1.0";
       #
       ## TEST Case for GitHub sync
-      $deployment_request->{'echimp-gitops'}->{'environment'} = "dev";
+      $deployment_request->{'echimp-gitops'}->{'environment'} = "impl";
       $deployment_request->{'echimp-gitops'}->{'targetRevision'} = "0.1.0";
 
       ## Write the deployment requests to the file to deploy to ArgoCD
