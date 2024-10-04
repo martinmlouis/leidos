@@ -16,7 +16,7 @@ spec:
     description: The build image used to build and push argocd application set.
   - name: builder-git-image-argocd-application-set
     type: string
-    default: "harbor.35.212.92.161.nip.io/leidos/git:1.16.0"
+    default: "harbor.35.212.92.161.nip.io/leidos/git:latest"
     description: The build image used to build and push argocd application set.
   - name: builder-image-argocd-application-set-repo-url
     type: string
