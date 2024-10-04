@@ -77,7 +77,7 @@ spec:
       git config --global user.name "Martin Lourduswamy"
       git add .
       git commit -m "Deployment Rquest"
-      git push
+      git push origin HEAD:main
 
   - name: builder-argocd-image-argocd-application-set-step
     image: $(params.builder-argocd-image-argocd-application-set)
