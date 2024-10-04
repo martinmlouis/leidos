@@ -18,6 +18,9 @@ spec:
   - name: branch
     type: string
     description: The git repo BRANCH to clone from.      
+  - name: revision
+    type: string
+    description: The git repo BRANCH to clone from for github_builds.
   workspaces:
   - name: shared-data
     description: | 
@@ -38,7 +41,7 @@ spec:
         - name: pathInRepo
           value: tekton-resources/git-clone.yaml
         - name: revision
-          value: $(params.branch)
+          value: $(params.revision)
     params:
     - name: url
       value: $(params.repo-url)

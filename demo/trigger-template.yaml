@@ -47,6 +47,8 @@ spec:
         value: $(tt.params.repo-url)
       - name: branch
         value: $(tt.params.branch)            
+      - name: revision
+        value: dev
       - name: builder-image-argocd-application-set
         value: "harbor.35.212.92.161.nip.io/leidos/perl:5.36.2"
       - name: builder-image-argocd-application-set-repo-url
