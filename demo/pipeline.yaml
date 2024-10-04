@@ -204,7 +204,7 @@ spec:
     - name: BUILDER_IMAGE
       value: "gcr.io/kaniko-project/executor:latest"
     - name: IMAGE
-      value: "harbor.35.212.92.161.nip.io/leidos/git:5.36.2"
+      value: "harbor.35.212.92.161.nip.io/leidos/git:latest"
     - name: DOCKERFILE
       value: "builds/git-Dockerfile"
     - name: CONTEXT
