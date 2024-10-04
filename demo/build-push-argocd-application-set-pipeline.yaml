@@ -14,6 +14,10 @@ spec:
     type: string
     default: "harbor.35.212.92.161.nip.io/leidos/argocd:1.16.0"
     description: The build image used to build and push argocd application set.
+  - name: builder-git-image-argocd-application-set
+    type: string
+    default: "harbor.35.212.92.161.nip.io/leidos/git:1.16.0"
+    description: The build image used to build and push argocd application set.
   - name: builder-image-argocd-application-set-repo-url
     type: string
     default: "https://github.com/martinmlouis/echimp.git"
@@ -40,6 +44,7 @@ spec:
     params:
     - name: url
       value: $(params.builder-image-argocd-application-set-repo-url)
+
   - name: build-push-argocd-application-set-task
     runAfter: ["fetch-source-argocd-deployments"]
     taskRef:
@@ -49,8 +54,12 @@ spec:
       value: $(params.builder-perl-image-argocd-application-set)
     - name: builder-argocd-image-argocd-application-set
       value: $(params.builder-argocd-image-argocd-application-set)
+    - name: builder-git-image-argocd-application-set
+      value: $(params.builder-git-image-argocd-application-set)
     workspaces:
     - name: source
       workspace: shared-data
     - name: harbor-access-secret
       workspace: harbor-access-secret
+    - name: git-credentials
+      workspace: git-credentials

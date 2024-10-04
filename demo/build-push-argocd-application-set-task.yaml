@@ -7,9 +7,11 @@ spec:
   params:
   - name: builder-perl-image-argocd-application-set
   - name: builder-argocd-image-argocd-application-set
+  - name: builder-git-image-argocd-application-set
   workspaces:
   - name: source
   - name: harbor-access-secret
+  - name: git-credentials
   steps:
   - name: builder-perl-image-argocd-application-set-step
     image: $(params.builder-perl-image-argocd-application-set)
@@ -62,6 +64,17 @@ spec:
       print Dumper $applicationset;
       DumpFile("appsets/nginx.yaml", $applicationset);
      
+  - name: builder-git-image-argocd-application-set-step
+    image: $(params.builder-git-image-argocd-application-set)
+    script: | 
+      #!/usr/bin/env sh
+      pwd
+      ls -ltr $(workspaces.source.path)
+      cd $(workspaces.source.path)
+      #cat $(workspaces.source.path)/README.md
+      git add .
+      git commit -m "Deployment Rquest"
+      git push
 
   - name: builder-argocd-image-argocd-application-set-step
     image: $(params.builder-argocd-image-argocd-application-set)
