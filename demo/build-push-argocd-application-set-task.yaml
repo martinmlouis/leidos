@@ -11,7 +11,7 @@ spec:
   workspaces:
   - name: source
   - name: harbor-access-secret
-  - name: git-credentials
+  - name: git-credentials-git
   steps:
   - name: builder-perl-image-argocd-application-set-step
     image: $(params.builder-perl-image-argocd-application-set)
