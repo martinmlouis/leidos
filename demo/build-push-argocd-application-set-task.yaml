@@ -1,0 +1,27 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: build-push-argocd-application-set-task
+spec:
+  description: Build and push the argocd application set to gitrepo.
+  params:
+  - name: builder-perl-image-argocd-application-set
+  - name: builder-argocd-image-argocd-application-set
+  workspaces:
+  - name: source
+  - name: harbor-access-secret
+  steps:
+  - name: builder-perl-image-argocd-application-set-step
+    image: $(params.builder-perl-image-argocd-application-set)
+    script: | 
+      #!/usr/bin/env sh
+      pwd
+      ls -ltr $(workspaces.source.path)
+      #cat $(workspaces.source.path)/README.md
+  - name: builder-argocd-image-argocd-application-set-step
+    image: $(params.builder-argocd-image-argocd-application-set)
+    script: | 
+      #!/usr/bin/env sh
+      pwd
+      ls -ltr $(workspaces.source.path)
+      #cat $(workspaces.source.path)/README.md

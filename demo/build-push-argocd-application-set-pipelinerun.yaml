@@ -10,8 +10,10 @@ spec:
     securityContext:
       fsGroup: 65532          
   params:
-  - name: builder-image-argocd-application-set
+  - name: builder-perl-image-argocd-application-set
     value: "harbor.35.212.92.161.nip.io/leidos/perl:5.36.2"
+  - name: builder-argocd-image-argocd-application-set
+    value: "harbor.35.212.92.161.nip.io/leidos/argocd:1.16.0"      
   - name: builder-image-argocd-application-set-repo-url
     value: "https://github.com/martinmlouis/echimp.git"
   workspaces:

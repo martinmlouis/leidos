@@ -6,9 +6,13 @@ spec:
   description: | 
     This pipeline clones a git repo, then echoes the README file to the stout.
   params:
-  - name: builder-image-argocd-application-set
+  - name: builder-perl-image-argocd-application-set
     type: string
     default: "harbor.35.212.92.161.nip.io/leidos/perl:5.36.2"
+    description: The build image used to build and push argocd application set.
+  - name: builder-argocd-image-argocd-application-set
+    type: string
+    default: "harbor.35.212.92.161.nip.io/leidos/argocd:1.16.0"
     description: The build image used to build and push argocd application set.
   - name: builder-image-argocd-application-set-repo-url
     type: string
@@ -36,13 +40,15 @@ spec:
     params:
     - name: url
       value: $(params.builder-image-argocd-application-set-repo-url)
-  - name: build-push-argocd-application-set
+  - name: build-push-argocd-application-set-task
     runAfter: ["fetch-source-argocd-deployments"]
     taskRef:
       name: build-push-argocd-application-set
     params:
-    - name: BUILDER_IMAGE_ARGOCD_APPLICATION_SET
-      value: $(params.builder-image-argocd-application-set)
+    - name: builder-perl-image-argocd-application-set
+      value: $(params.builder-perl-image-argocd-application-set)
+    - name: builder-argocd-image-argocd-application-set
+      value: $(params.builder-argocd-image-argocd-application-set)
     workspaces:
     - name: source
       workspace: shared-data
