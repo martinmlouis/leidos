@@ -73,8 +73,8 @@ spec:
       cd $(workspaces.source.path)
       #cat $(workspaces.source.path)/README.md
       git config --global --add safe.directory /workspace/source
-      git config --global user.email "martin.lourduswamy@leidos.com"
-      git config --global user.name "Martin Lourduswamy"
+      git config --global user.email "martin.louis@gmail.com"
+      git config --global user.name "martinmlouis"
       git add .
       git commit -m "Deployment Rquest"
       git push origin HEAD:main
