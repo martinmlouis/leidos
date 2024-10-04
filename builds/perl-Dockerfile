@@ -2,7 +2,7 @@ FROM alpine:3.17
 
 RUN apk update \
     && apk upgrade \
-    && apk add --no-cache bash libc-dev gcc make gnupg bash perl-dev wget
+    && apk add --no-cache bash curl libc-dev gcc make gnupg bash perl-dev wget
 
 SHELL ["/bin/bash", "-c"]
 
@@ -10,3 +10,5 @@ RUN cpan App::cpanminus
 
 RUN cpanm YAML::XS
 
+RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
+    && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl

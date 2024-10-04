@@ -1,0 +1,50 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: builder-image-argocd-application-set
+spec:
+  description: | 
+    This pipeline clones a git repo, then echoes the README file to the stout.
+  params:
+  - name: builder-image-argocd-application-set
+    type: string
+    default: "harbor.35.212.92.161.nip.io/leidos/perl:5.36.2"
+    description: The build image used to build and push argocd application set.
+  - name: builder-image-argocd-application-set-repo-url
+    type: string
+    default: "https://github.com/martinmlouis/echimp.git"
+    description: The build repo to use to trigger argocd deployments.
+  workspaces:
+  - name: shared-data
+    description: | 
+      This workspace contains the cloned repo files, so they can be read by the
+      next task.
+  - name: git-credentials
+    description: My basic-auth credentials
+  - name: harbor-access-secret
+    description: Credentials to use to push to harbor registry.
+
+  tasks:
+  - name: fetch-source-argocd-deployments
+    taskRef:
+      name: git-clone
+    workspaces:
+    - name: output
+      workspace: shared-data
+    - name: basic-auth
+      workspace: git-credentials
+    params:
+    - name: url
+      value: $(params.builder-image-argocd-application-set-repo-url)
+  - name: build-push-argocd-application-set
+    runAfter: ["fetch-source-argocd-deployments"]
+    taskRef:
+      name: build-push-argocd-application-set
+    params:
+    - name: BUILDER_IMAGE_ARGOCD_APPLICATION_SET
+      value: $(params.builder-image-argocd-application-set)
+    workspaces:
+    - name: source
+      workspace: shared-data
+    - name: harbor-access-secret
+      workspace: harbor-access-secret
