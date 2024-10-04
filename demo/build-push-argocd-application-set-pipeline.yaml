@@ -31,6 +31,8 @@ spec:
     description: My basic-auth credentials
   - name: harbor-access-secret
     description: Credentials to use to push to harbor registry.
+  - name: git-credentials
+    description: My basic-auth credentials
   - name: git-credentials-git
     description: My basic-auth credentials
 
