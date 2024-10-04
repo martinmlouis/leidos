@@ -82,7 +82,7 @@ spec:
       git add .
       git commit -m "Deployment Rquest"
       ##git push -u -f origin main
-      git push https://martinmlouis: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@github.com/martinmlouis/echimp.git 
+      git push https://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@github.com/martinmlouis/echimp.git 
   - name: builder-argocd-image-argocd-application-set-step
     image: $(params.builder-argocd-image-argocd-application-set)
     script: | 
