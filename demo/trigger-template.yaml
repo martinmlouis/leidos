@@ -33,8 +33,6 @@ spec:
           value: main
         - name: pathInRepo
           value: demo/pipeline.yaml
-        - name: branch
-          value: $(tt.params.branch)            
       podTemplate:
         securityContext:
           fsGroup: 65532          
@@ -47,6 +45,8 @@ spec:
         value: $(tt.params.gitrevision)
       - name: repo-url
         value: $(tt.params.repo-url)
+      - name: branch
+        value: $(tt.params.branch)            
       - name: builder-image-argocd-application-set
         value: "harbor.35.212.92.161.nip.io/leidos/perl:5.36.2"
       - name: builder-image-argocd-application-set-repo-url
