@@ -43,7 +43,7 @@ spec:
   - name: build-push-argocd-application-set-task
     runAfter: ["fetch-source-argocd-deployments"]
     taskRef:
-      name: build-push-argocd-application-set
+      name: build-push-argocd-application-set-task
     params:
     - name: builder-perl-image-argocd-application-set
       value: $(params.builder-perl-image-argocd-application-set)

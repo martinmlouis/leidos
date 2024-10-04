@@ -17,11 +17,59 @@ spec:
       #!/usr/bin/env sh
       pwd
       ls -ltr $(workspaces.source.path)
+      cd $(workspaces.source.path)
       #cat $(workspaces.source.path)/README.md
+  - name: builder-argocd-image-argocd-application-set-build-push
+    image: $(params.builder-perl-image-argocd-application-set)
+    script: | 
+      #!/usr/bin/env perl
+
+      use strict;
+      use warnings;
+
+      use YAML::XS qw(DumpFile LoadFile);;
+      use Data::Dumper;
+
+      chdir "$(workspaces.source.path)";
+
+      my $current_working_dir = qx(pwd);
+      print $current_working_dir;
+
+      my $current_files = qx(ls -ltr);
+      print $current_files;
+
+      my $deployment_request = LoadFile("deployment-request.yaml");
+      print Dumper $deployment_request;
+
+      ## TEST Case for HELM sync
+      $deployment_request->{'echimp-helmops'}->{'environment'} = "dev";
+      $deployment_request->{'echimp-helmops'}->{'targetRevision'} = "0.1.0";
+      #
+      ## TEST Case for GitHub sync
+      $deployment_request->{'echimp-gitops'}->{'environment'} = "dev";
+      $deployment_request->{'echimp-gitops'}->{'targetRevision'} = "0.1.0";
+
+      ## Write the deployment requests to the file to deploy to ArgoCD
+      DumpFile("deployment-request.yaml", $deployment_request);
+      my $deployment_request = LoadFile("deployment-request.yaml");
+      print Dumper $deployment_request;
+
+      ## make the change in the ApplicationSet
+      my $applicationset = LoadFile("appsets/nginx.yaml");
+      print Dumper $applicationset;
+      $applicationset->{'spec'}->{'generators'}->[0]->{'list'}->{'elements'}->[0]->{'environment'} = $deployment_request->{'echimp-helmops'}->{'environment'};
+      $applicationset->{'spec'}->{'generators'}->[0]->{'list'}->{'elements'}->[0]->{'targetRevision'} = $deployment_request->{'echimp-helmops'}->{'targetRevision'};
+      print Dumper $applicationset;
+      DumpFile("appsets/nginx.yaml", $applicationset);
+     
+
   - name: builder-argocd-image-argocd-application-set-step
     image: $(params.builder-argocd-image-argocd-application-set)
     script: | 
       #!/usr/bin/env sh
       pwd
       ls -ltr $(workspaces.source.path)
+      cd $(workspaces.source.path)
       #cat $(workspaces.source.path)/README.md
+      argocd login argocd-dev.35.212.92.161.nip.io --name "admin" --password "UQ0g7aTIafIfAzJS" --grpc-web --insecure --username admin
+      argocd app create echimp-dev -f echimp-app-of-apps.yaml
