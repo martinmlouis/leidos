@@ -10,6 +10,8 @@ spec:
       value: "$(body.repository.url)"
     - name: extensions.truncated_sha
       value: "$(body.head_commit.id)"
+    - name: branch
+      value: "$(extensions.branch)"        
 ---        
 apiVersion: triggers.tekton.dev/v1beta1
 kind: TriggerBinding

@@ -15,6 +15,9 @@ spec:
   - name: builder-image-argocd-application-set-repo-url
     type: string
     description: The build repo to use to trigger argocd deployments.
+  - name: branch
+    type: string
+    description: The git repo BRANCH to clone from.      
   workspaces:
   - name: shared-data
     description: | 

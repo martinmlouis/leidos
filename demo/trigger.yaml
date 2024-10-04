@@ -17,6 +17,8 @@ spec:
               expression: "body.repository.url"
             - key: extensions.changedfiles
               expression: "body.head_commit.added"
+            - key: branch
+              expression: "body.ref.split('/')[2]"                
   bindings:
   - ref: github-triggerbinding
   template:
