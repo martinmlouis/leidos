@@ -65,7 +65,7 @@ spec:
 
       - name: git-credentials
         secret:
-          secretName: secret-basic-auth
+          secretName: secret-basic-auth-git
       - name: harbor-access-secret
         secret:
           secretName: harbor-access-secret            
