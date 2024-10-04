@@ -73,12 +73,16 @@ spec:
       ls -ltr $(workspaces.source.path)
       cd $(workspaces.source.path)
       #cat $(workspaces.source.path)/README.md
-      git config --global --add safe.directory /workspace/source
+      git clone https://github.com/martinmlouis/echimp.git
+      cp -f appsets/nginx.yaml echimp/appsets/nginx.yaml
+      chdir "echimp"
+      git config --global --add safe.directory echimp
       git config --global user.email "martin.louis@gmail.com"
       git config --global user.name "martinmlouis"
       git add .
       git commit -m "Deployment Rquest"
-      git push origin HEAD:main
+      ##git push -u -f origin main
+      git push https://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@github.com/martinmlouis/echimp.git 
 
   - name: builder-argocd-image-argocd-application-set-step
     image: $(params.builder-argocd-image-argocd-application-set)
