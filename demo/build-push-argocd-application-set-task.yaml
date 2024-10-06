@@ -60,14 +60,21 @@ spec:
       print Dumper $deployment_request;
 
       ## make the change in the ApplicationSet for echimp-helmops
-      my $applicationset = LoadFile("appsets/nginx.yaml");
+      my $applicationset = LoadFile("appsets/echimp-helm-nginx.yaml");
       print Dumper $applicationset;
-      exit 0;
       $applicationset->{'spec'}->{'generators'}->[0]->{'list'}->{'elements'}->[0]->{'environment'} = $deployment_request->{'echimp-helmops'}->{'environment'};
       $applicationset->{'spec'}->{'generators'}->[0]->{'list'}->{'elements'}->[0]->{'targetRevision'} = $deployment_request->{'echimp-helmops'}->{'targetRevision'};
       print Dumper $applicationset;
-      DumpFile("appsets/nginx.yaml", $applicationset);
+      DumpFile("appsets/echimp-helm-nginx.yaml", $applicationset);
      
+      ## make the change in the ApplicationSet for echimp-helmops
+      $applicationset = LoadFile("appsets/echimp-github-nginx.yaml");
+      print Dumper $applicationset;
+      $applicationset->{'spec'}->{'generators'}->[0]->{'list'}->{'elements'}->[0]->{'environment'} = $deployment_request->{'echimp-gitops'}->{'environment'};
+      $applicationset->{'spec'}->{'generators'}->[0]->{'list'}->{'elements'}->[0]->{'targetRevision'} = $deployment_request->{'echimp-gitops'}->{'targetRevision'};
+      print Dumper $applicationset;
+      DumpFile("appsets/echimp-github-nginx.yaml", $applicationset);
+
   - name: builder-git-image-argocd-application-set-step
     image: $(params.builder-git-image-argocd-application-set)
     script: | 
@@ -84,8 +91,7 @@ spec:
       git config --global user.name "martinmlouis"
       git add .
       git commit -m "Deployment Rquest"
-      ##git push -u -f origin main
-      ##git push https://x-access-token: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@github.com/martinmlouis/echimp.git 
+      git push https://x-access-token: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@github.com/martinmlouis/echimp.git 
   - name: builder-argocd-image-argocd-application-set-step
     image: $(params.builder-argocd-image-argocd-application-set)
     script: | 
