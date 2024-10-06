@@ -21,6 +21,8 @@ spec:
       pwd
       ls -ltr $(workspaces.source.path)
       cd $(workspaces.source.path)
+      du -ah $(workspaces.source.path)
+
       #cat $(workspaces.source.path)/README.md
   - name: builder-argocd-image-argocd-application-set-build-push
     image: $(params.builder-perl-image-argocd-application-set)
@@ -57,9 +59,10 @@ spec:
       my $deployment_request = LoadFile("deployment-request.yaml");
       print Dumper $deployment_request;
 
-      ## make the change in the ApplicationSet
+      ## make the change in the ApplicationSet for echimp-helmops
       my $applicationset = LoadFile("appsets/nginx.yaml");
       print Dumper $applicationset;
+      exit 0
       $applicationset->{'spec'}->{'generators'}->[0]->{'list'}->{'elements'}->[0]->{'environment'} = $deployment_request->{'echimp-helmops'}->{'environment'};
       $applicationset->{'spec'}->{'generators'}->[0]->{'list'}->{'elements'}->[0]->{'targetRevision'} = $deployment_request->{'echimp-helmops'}->{'targetRevision'};
       print Dumper $applicationset;
@@ -82,7 +85,7 @@ spec:
       git add .
       git commit -m "Deployment Rquest"
       ##git push -u -f origin main
-      git push https://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@github.com/martinmlouis/echimp.git 
+      ##git push https://x-access-token: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@github.com/martinmlouis/echimp.git 
   - name: builder-argocd-image-argocd-application-set-step
     image: $(params.builder-argocd-image-argocd-application-set)
     script: | 
