@@ -84,14 +84,16 @@ spec:
       cd $(workspaces.source.path)
       #cat $(workspaces.source.path)/README.md
       git clone https://github.com/martinmlouis/echimp.git
-      cp -f appsets/nginx.yaml echimp/appsets/nginx.yaml
+      cp -f appsets/echimp-helm-nginx.yaml echimp/appsets/echimp-helm-nginx.yaml
+      cp -f appsets/echimp-github-nginx.yaml echimp/appsets/echimp-github-nginx.yaml
       chdir "echimp"
       git config --global --add safe.directory echimp
       git config --global user.email "martin.louis@gmail.com"
       git config --global user.name "martinmlouis"
       git add .
       git commit -m "Deployment Rquest"
-      git push https://x-access-token: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@github.com/martinmlouis/echimp.git 
+
+      git push https://x-access-token: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@github.com/martinmlouis/echimp.git 
   - name: builder-argocd-image-argocd-application-set-step
     image: $(params.builder-argocd-image-argocd-application-set)
     script: | 
