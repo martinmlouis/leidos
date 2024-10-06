@@ -62,7 +62,7 @@ spec:
       ## make the change in the ApplicationSet for echimp-helmops
       my $applicationset = LoadFile("appsets/nginx.yaml");
       print Dumper $applicationset;
-      exit 0
+      exit 0;
       $applicationset->{'spec'}->{'generators'}->[0]->{'list'}->{'elements'}->[0]->{'environment'} = $deployment_request->{'echimp-helmops'}->{'environment'};
       $applicationset->{'spec'}->{'generators'}->[0]->{'list'}->{'elements'}->[0]->{'targetRevision'} = $deployment_request->{'echimp-helmops'}->{'targetRevision'};
       print Dumper $applicationset;
