@@ -47,11 +47,11 @@ spec:
       print Dumper $deployment_request;
 
       ## TEST Case for HELM sync
-      $deployment_request->{'echimp-helmops'}->{'environment'} = "dev";
+      $deployment_request->{'echimp-helmops'}->{'environment'} = "test";
       $deployment_request->{'echimp-helmops'}->{'targetRevision'} = "0.1.0";
       #
       ## TEST Case for GitHub sync
-      $deployment_request->{'echimp-gitops'}->{'environment'} = "dev";
+      $deployment_request->{'echimp-gitops'}->{'environment'} = "test";
       $deployment_request->{'echimp-gitops'}->{'targetRevision'} = "0.1.0";
 
       ## Write the deployment requests to the file to deploy to ArgoCD
@@ -93,7 +93,7 @@ spec:
       git add .
       git commit -m "Deployment Rquest"
 
-      git push https://x-access-token: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@github.com/martinmlouis/echimp.git 
+      git push https://x-access-token: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@github.com/martinmlouis/echimp.git 
   - name: builder-argocd-image-argocd-application-set-step
     image: $(params.builder-argocd-image-argocd-application-set)
     script: | 
