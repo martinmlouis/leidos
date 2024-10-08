@@ -8,7 +8,7 @@ SHELL ["/bin/bash", "-c"]
 
 RUN cpan App::cpanminus 
 
-RUN cpanm YAML::XS
+RUN cpanm YAML::XS JSON
 
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
     && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
